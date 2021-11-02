@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.example.flickrproject_v2.R
 import com.example.flickrproject_v2.R.layout.main_fragment
@@ -49,6 +50,12 @@ class MainFragment : Fragment() {
         nextButton.setOnClickListener {
             viewModel.nextPhoto()
         }
+
+        // Navigation
+        allButton.setOnClickListener {
+            Navigation.findNavController(layout).navigate(R.id.main_to_list)
+        }
+
         return layout
     }
 
