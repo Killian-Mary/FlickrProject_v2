@@ -18,5 +18,17 @@
         android:id="@+id/listFragment"
         android:name="com.example.flickrproject_v2.ui.list.ListFragment"
         android:label="fragment_list"
-        tools:layout="@layout/fragment_list" />
+        tools:layout="@layout/fragment_list">
+        <action
+            android:id="@+id/list_to_full"
+            app:destination="@id/fullFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fullFragment"
+        android:name="com.example.flickrproject_v2.ui.full.FullFragment"
+        android:label="FullFragment" >
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </fragment>
 </navigation>

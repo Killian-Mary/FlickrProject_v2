@@ -1,9 +1,11 @@
 package com.example.flickrproject_v2.ui.list
 
+import android.text.Layout
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.GridLayout
 import android.widget.ImageView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.flickrproject_v2.R
@@ -36,5 +38,12 @@ class MyAdapter(val photoList : List<Photo>, val callback: (Int) -> Unit) : Recy
         var url:String =
             "https://live.staticflickr.com/" + server + "/" + id + "_" + secret + ".jpg"
         Glide.with(holder.v).load(url).into(imageView)
+
+        // On click on image
+        val image = holder.v.findViewById<ImageView>(R.id.iv_photo)
+        imageView.setOnClickListener {
+            val action = ListFragmentDirections.listToFull(url)
+            Navigation.findNavController(holder.v).navigate(action)
+        }
     }
 }
