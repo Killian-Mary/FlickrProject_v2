@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide
 import com.example.flickrproject_v2.R
 import com.example.flickrproject_v2.R.layout.main_fragment
 import com.example.flickrproject_v2.model.Photo
+import com.example.flickrproject_v2.ui.list.ListFragmentDirections
 
 class MainFragment : Fragment() {
 
@@ -37,10 +38,11 @@ class MainFragment : Fragment() {
         val allButton = layout.findViewById<Button>(R.id.btn_allImages)
         val imageTitle = layout.findViewById<TextView>(R.id.tv_title)
         val imageView = layout.findViewById<ImageView>(R.id.iv_central)
-
+        var urlForFull = ""
         // Observer
         val observer = Observer<Photo> { photo ->
             val url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server + "/" + photo.id+"_"+photo.secret + ".jpg"
+            urlForFull = url
             imageTitle.text = photo.title
             Glide.with(layout).load(url).into(imageView)
         }
@@ -54,6 +56,11 @@ class MainFragment : Fragment() {
         // Navigation
         allButton.setOnClickListener {
             Navigation.findNavController(layout).navigate(R.id.main_to_list)
+        }
+        
+        imageView.setOnClickListener{
+            val action = MainFragmentDirections.mainToFull(urlForFull)
+            Navigation.findNavController(layout).navigate(action)
         }
 
         return layout

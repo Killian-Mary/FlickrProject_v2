@@ -13,6 +13,9 @@
         <action
             android:id="@+id/main_to_list"
             app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/main_to_full"
+            app:destination="@id/fullFragment" />
     </fragment>
     <fragment
         android:id="@+id/listFragment"
